@@ -98,6 +98,19 @@ $this->app->bind(OrderRepositoryInterface::class, EloquentOrderRepository::class
 
 ---
 
+## Trade-offs
+
+The repository layer adds an interface and a class per entity. If the application has a single data source with no plans to change it, the abstraction primarily adds testing value. In that case, evaluate whether feature tests against an in-memory SQLite database provide sufficient coverage at lower complexity cost.
+
+The pattern earns its place when:
+- the same query logic appears in multiple services or jobs
+- fast unit tests requiring test doubles are a stated goal
+- there is a realistic possibility of swapping the data source (e.g., read models backed by Elasticsearch or Redis)
+
+Do not use repositories as a convention applied to every model. Use them where the abstraction provides measurable benefit.
+
+---
+
 ## Production Notes
 
 **Do not make repositories generic CRUD wrappers.**  
@@ -105,9 +118,6 @@ A repository with `find()`, `findAll()`, `save()`, `delete()` is just a thin wra
 
 **Repositories should return domain objects, not query builders.**  
 Returning a query builder from a repository defeats the purpose of the abstraction — the caller can still modify the query. Return collections, models, or DTOs.
-
-**Consider whether the abstraction is worth the cost.**  
-If the application has one database and one ORM and no plans to change either, a repository layer primarily adds value for testing. In that case, evaluate whether feature tests with an in-memory SQLite database provide sufficient coverage at lower complexity cost.
 
 **Avoid injecting repositories into controllers.**  
 A controller that calls a repository directly is a controller doing the service's job. Repositories belong one layer below services, not at the HTTP boundary.

@@ -85,6 +85,14 @@ public function store(RegisterRequest $request): JsonResponse
 
 ---
 
+## Trade-offs
+
+For simple operations with one or two parameters unlikely to change, a dedicated class may add overhead without meaningful benefit. Passing `string $name, string $email` directly is clearer than constructing a DTO wrapping two strings.
+
+The pattern earns its place when the data structure is complex, shared across multiple layers, or used from multiple entry points (controller, CLI command, queue job). The value compounds as the number of properties grows and the DTO is passed deeper through the system.
+
+---
+
 ## Production Notes
 
 **Use PHP 8.1 readonly properties.**  

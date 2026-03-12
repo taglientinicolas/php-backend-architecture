@@ -87,6 +87,14 @@ public function store(OrderRequest $request): JsonResponse
 
 ---
 
+## Trade-offs
+
+Centralising exception handling requires registering each new exception type in the global handler. In small applications with few exception types, this overhead may not justify the structural investment.
+
+The pattern earns its place when the same exception types are thrown from multiple services and consistent HTTP mappings must be maintained across the codebase without per-controller `try/catch` blocks.
+
+---
+
 ## Production Notes
 
 **Never expose raw exception messages to API consumers in production.**  

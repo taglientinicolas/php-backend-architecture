@@ -105,6 +105,14 @@ class ApiResponse
 
 ---
 
+## Trade-offs
+
+Standardization requires discipline: every endpoint must use the shared wrapper, and new developers must learn the convention. In applications with a single internal consumer and no external contract, strict envelope enforcement may not be worth the overhead.
+
+The pattern earns its place when multiple consumers (frontend, mobile, third-party integrations) depend on a stable and predictable response contract, or when the API is versioned and breaking changes must be avoided.
+
+---
+
 ## Production Notes
 
 **Use Laravel API Resources for response shaping, not `$model->toArray()`.**  

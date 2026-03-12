@@ -107,6 +107,16 @@ class OrderService
 
 ---
 
+## Trade-offs
+
+The pattern adds a class. For simple CRUD operations with no business rules — where the controller passes validated data directly to a model — a service layer is ceremony without benefit.
+
+Apply it when there are multiple steps, conditions, or side effects involved, or when the same logic needs to be callable from more than one entry point.
+
+Avoid the model-per-service convention (`UserService`, `OrderService` for every model). Create services around operations or use cases (`OrderPlacementService`, `SubscriptionRenewalService`).
+
+---
+
 ## Production Notes
 
 **Inject services via the constructor, not the facade or `app()`.**  

@@ -1,52 +1,32 @@
-# PHP Backend Architecture
+# php-backend-architecture
 
-A collection of practical backend architecture patterns in PHP.
+A curated collection of backend architecture patterns for PHP applications.
 
-This repository focuses on patterns that help build more maintainable, scalable, and production-ready backend applications.
-
----
-
-## Topics covered
-
-- Service Layer Pattern
-- Repository Pattern
-- DTO Pattern
-- API Response Standardization
-- Error Handling Pattern
-
----
-
-## Why this repository exists
-
-As backend applications grow, controllers become bloated, business rules get scattered, and error handling becomes inconsistent.
-
-This repository collects practical patterns that help structure backend applications more clearly and make them easier to maintain.
+Each pattern addresses a structural problem that emerges as applications grow. The focus is on practical, production-oriented solutions — not theoretical abstractions.
 
 ---
 
 ## Patterns
 
-### Service Layer Pattern
-Move business logic out of controllers and into dedicated services.
+| Pattern | Problem addressed |
+|---|---|
+| [Service Layer](./service-layer-pattern/README.md) | Business logic leaking into controllers |
+| [Repository Pattern](./repository-pattern/README.md) | Data access logic scattered across the codebase |
+| [DTO Pattern](./dto-pattern/README.md) | Unstructured data flowing between application layers |
+| [API Response Standardization](./api-response-standardization/README.md) | Inconsistent response shapes across endpoints |
+| [Error Handling](./error-handling-pattern/README.md) | Unhandled exceptions and unpredictable error responses |
 
-### Repository Pattern
-Encapsulate data access logic when additional abstraction is useful.
+---
 
-### DTO Pattern
-Use dedicated objects to move structured data across application layers.
+## Scope
 
-### API Response Standardization
-Keep API responses predictable and consistent.
+These patterns target the **application layer** of a PHP/Laravel backend. The examples use Laravel conventions where relevant, but the concepts apply broadly to any PHP application with an MVC structure.
 
-### Error Handling Pattern
-Handle exceptions and application errors in a clear and maintainable way.
+All examples target **PHP 8.1+** and **Laravel 9+** unless otherwise stated.
 
 ---
 
 ## Author
 
-Nicolas Taglienti  
-Backend Engineer — PHP / Laravel
-
-LinkedIn:  
-https://www.linkedin.com/in/nicolastaglienti/
+**Nicolas Taglienti** — Backend Engineer, PHP / Laravel  
+[linkedin.com/in/nicolastaglienti](https://www.linkedin.com/in/nicolastaglienti/)
